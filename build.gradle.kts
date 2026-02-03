@@ -9,14 +9,14 @@ group = "com.mangavel"
 version = "1.0.0"
 
 repositories {
-    mavenCentral()
-    google() // Required for the library's internal dependencies
-    maven { url = uri("https://jitpack.io") }
+    google()         // 1. Google first for Android-related parts
+    mavenCentral()   // 2. Standard libraries
+    maven { url = uri("https://jitpack.io") } // 3. JitPack last
 }
 
 dependencies {
-    // We use 2.0.1 because it is confirmed to be "Green" (built) on JitPack
-    implementation("com.github.KotatsuApp:kotatsu-parsers:2.0.1")
+    // This version (v2.11.0) is verified as "Green" on JitPack
+    implementation("com.github.KotatsuApp:kotatsu-parsers:v2.11.0")
     
     // Ktor Server dependencies
     implementation("io.ktor:ktor-server-core-jvm:2.3.5")
