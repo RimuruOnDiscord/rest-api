@@ -13,30 +13,21 @@ import org.koitharu.kotatsu.parsers.model.MangaSearchQuery
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 8080
     embeddedServer(Netty, port = port, host = "0.0.0.0") {
-        install(ContentNegotiation) {
-            json()
-        }
+        install(ContentNegotiation) { json() }
         install(CORS) {
             anyHost()
             allowHeader(HttpHeaders.ContentType)
         }
-
         val context = WebMangaContext()
-
         routing {
-            get("/") {
-                call.respondText("Manga API is Running")
-            }
-
+            get("/") { call.respondText("API is active") }
             get("/search") {
                 val queryText = call.parameters["q"] ?: ""
                 val sourceParam = call.parameters["source"] ?: "MANGADEX"
-                
                 try {
                     val source = MangaParserSource.valueOf(sourceParam)
                     val parser = context.newParserInstance(source)
                     val results = parser.getList(MangaSearchQuery(queryText))
-                    
                     val response = results.map {
                         mapOf(
                             "id" to it.id,
