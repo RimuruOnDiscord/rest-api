@@ -5,9 +5,10 @@ WORKDIR /home/gradle/src
 RUN gradle shadowJar --no-daemon
 
 # Step 2: Run the application
-FROM openjdk:17-slim
+# We use eclipse-temurin because openjdk is deprecated
+FROM eclipse-temurin:17-jre
 EXPOSE 8080
 RUN mkdir /app
-# This assumes your project is named "rest-api" in settings.gradle.kts
+# This copies the generated jar from the build stage
 COPY --from=build /home/gradle/src/build/libs/*-all.jar /app/manga-api.jar
 ENTRYPOINT ["java", "-jar", "/app/manga-api.jar"]
