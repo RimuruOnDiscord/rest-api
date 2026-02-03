@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     // Stable version of the parser
-    implementation("com.github.KotatsuApp:kotatsu-parsers:1.7")
+    implementation("com.github.KotatsuApp:kotatsu-parsers:master-SNAPSHOT")
     
     implementation("io.ktor:ktor-server-core-jvm:2.3.5")
     implementation("io.ktor:ktor-server-netty-jvm:2.3.5")
@@ -33,4 +33,5 @@ tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
     archiveClassifier.set("all")
     archiveVersion.set("")
 }
+
 
