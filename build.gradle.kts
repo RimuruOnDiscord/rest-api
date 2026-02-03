@@ -10,15 +10,15 @@ version = "1.0.0"
 
 repositories {
     mavenCentral()
-    google()  // <--- THIS IS THE MISSING PIECE
+    google() // Required for the library's internal dependencies
     maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
-    // Use the most stable 2.x version with the 'v' prefix
-    implementation("com.github.KotatsuApp:kotatsu-parsers:v2.22.2")
+    // We use 2.0.1 because it is confirmed to be "Green" (built) on JitPack
+    implementation("com.github.KotatsuApp:kotatsu-parsers:2.0.1")
     
-    // Ktor dependencies
+    // Ktor Server dependencies
     implementation("io.ktor:ktor-server-core-jvm:2.3.5")
     implementation("io.ktor:ktor-server-netty-jvm:2.3.5")
     implementation("io.ktor:ktor-server-content-negotiation-jvm:2.3.5")
@@ -35,6 +35,3 @@ tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
     archiveClassifier.set("all")
     archiveVersion.set("")
 }
-
-
-
